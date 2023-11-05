@@ -1,5 +1,6 @@
 import os
 
+#used to delete .class files
 def delete_files_with_extension(directory, extension):
     for root, dirs, files in os.walk(directory):
         for file in files:
