@@ -30,7 +30,7 @@ public class regex_func {
                 }
 
             }
-            System.out.println(correct_list);
+            // System.out.println(correct_list);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

@@ -29,7 +29,7 @@ public class regex_variables {
                 }
 
             }
-            System.out.println(correct_list);
+            // System.out.println(correct_list);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

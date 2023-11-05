@@ -69,10 +69,10 @@ public class indents {
             }
 
             // System.out.println(list);
-            System.out.println(follows);
+            // System.out.println(follows);
         } catch (FileNotFoundException | StringIndexOutOfBoundsException e) {
             follows = false;
-            System.out.println(follows);
+            // System.out.println(follows);
         }
         return follows;
     }

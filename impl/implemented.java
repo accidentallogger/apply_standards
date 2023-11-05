@@ -31,6 +31,10 @@ public class implemented implements rules {
         c = (imp.no_of_nests(Filename, Integer.parseInt(arr.get(2))));
         d = (imp.variable_name(Filename, arr.get(3)));
 
+        System.out.println("indentation followed : " + a);
+        System.out.println("function names that follow the given regex value: " + b);
+        System.out.println("below nesting limit: " + c);
+        System.out.println("variable names that follow the given regex value: " + d);
     }
 
     public Boolean indent(String Filename, int indspaces) {
