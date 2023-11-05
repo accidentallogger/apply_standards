@@ -1,0 +1,18 @@
+package rules;
+
+import java.util.ArrayList;
+
+public interface rules {
+    public int indFwe(String Filename, int indspaces){
+        int manMaqn;
+        Boolean camelCase;
+
+    }
+
+    public Boolean noNests(String Filename, int endp);
+
+    public ArrayList<String> function_name(String Filename, String regxw);
+
+    public ArrayList<String> variable_name(String Filename, String regxw);
+
+}
