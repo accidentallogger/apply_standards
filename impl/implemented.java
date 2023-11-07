@@ -1,59 +1,66 @@
 package impl;
 
 import rules.rules;
-import indents.indents;
-import no_nests.no_nests;
+import indents.indent_spaces;
+import no_nests.no_of_nests;
 import var_name.regex_variables;
 import func_name.regex_func;
-import misc.readfiles;
+import misc.read_files;
 import java.util.ArrayList;
 
-//"([a-z]+[A-Z]+\\w+)+"
 public class implemented implements rules {
-    public static Boolean a;
-    public static ArrayList<String> b;
-    public static Boolean c;
-    public static ArrayList<String> d;
 
-    public static void call_all(String Filename) {
+    // Variables to store the results of various checks
+    public static Boolean IndentReturn;
+    public static ArrayList<String> FunctionNameReturn;
+    public static Boolean NestsReturn;
+    public static ArrayList<String> VariableNameReturn;
+
+    // Method to perform all checks on the provided file
+    public static void voidcallAll(String Filename) {
         implemented imp = new implemented();
-        // get custom input from user gui
-        String f1 = ("output\\VariableName.txt");
-        String f2 = ("output\\MethodName.txt");
-        String f3 = ("output\\Indent.txt");
-        String f4 = ("output\\Nest.txt");
+        // Get custom input from user GUI
+        String F1 = ("output\\VariableName.txt");
+        String F2 = ("output\\MethodName.txt");
+        String F3 = ("output\\Indent.txt");
+        String F4 = ("output\\Nest.txt");
 
-        ArrayList<String> arr = readfiles.readf(f3, f2, f4, f1);
+        ArrayList<String> ArrM = read_files.arrreadFiles(F3, F2, F4, F1);
 
-        // System.out.println(arr);
-        a = (imp.indent(Filename, Integer.parseInt(arr.get(0))));
-        b = (imp.function_name(Filename, arr.get(1)));
-        c = (imp.no_of_nests(Filename, Integer.parseInt(arr.get(2))));
-        d = (imp.variable_name(Filename, arr.get(3)));
+        // Perform checks and store results in respective variables
+        IndentReturn = (imp.boolindentSpaces(Filename, Integer.parseInt(ArrM.get(0))));
+        FunctionNameReturn = (imp.arrfunctionName(Filename, ArrM.get(1)));
+        NestsReturn = (imp.boolnestNum(Filename, Integer.parseInt(ArrM.get(2))));
+        VariableNameReturn = (imp.arrvariableName(Filename, ArrM.get(3)));
 
-        System.out.println("indentation followed : " + a);
-        System.out.println("function names that follow the given regex value: " + b);
-        System.out.println("below nesting limit: " + c);
-        System.out.println("variable names that follow the given regex value: " + d);
+        // Print the results of the checks
+        System.out.println("Indentation followed: " + IndentReturn);
+        System.out.println("Function names that follow the given regex value: " + FunctionNameReturn);
+        System.out.println("Below nesting limit: " + NestsReturn);
+        System.out.println("Variable names that follow the given regex value: " + VariableNameReturn);
     }
 
-    public Boolean indent(String Filename, int indspaces) {
-        indents ind = new indents();
-        return ind.indent(Filename, indspaces);
+    // Method to check if the indentation spaces are as expected
+    public Boolean boolindentSpaces(String Filename, int indspaces) {
+        indent_spaces ind = new indent_spaces();
+        return ind.boolindentSpaces(Filename, indspaces);
     }
 
-    public Boolean no_of_nests(String Filename, int endp) {
-        no_nests nes = new no_nests();
-        return nes.no_of_nests(Filename, endp);
+    // Method to check if the number of nests is within the expected limit
+    public Boolean boolnestNum(String Filename, int endp) {
+        no_of_nests nes = new no_of_nests();
+        return nes.boolnestNum(Filename, endp);
     }
 
-    public ArrayList<String> function_name(String Filename, String regxw) {
+    // Method to extract function names that follow a given regex pattern
+    public ArrayList<String> arrfunctionName(String Filename, String regxw) {
         regex_func rf = new regex_func();
-        return rf.function_name(Filename, regxw);
+        return rf.arrfunctionName(Filename, regxw);
     }
 
-    public ArrayList<String> variable_name(String Filename, String regxw) {
+    // Method to extract variable names that follow a given regex pattern
+    public ArrayList<String> arrvariableName(String Filename, String regxw) {
         regex_variables vn = new regex_variables();
-        return vn.variable_name(Filename, regxw);
+        return vn.arrvariableName(Filename, regxw);
     }
 }

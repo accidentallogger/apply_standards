@@ -4,31 +4,38 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class compare_datatype_names {
-    public static ArrayList<String> datatypenames(ArrayList<String> list, ArrayList<String> list_1) {
-        for (int i = 0; i < list.size(); i++) {
-            if (((list.get(i)).contains("int") || (list.get(i)).contains("String")
-                    || (list.get(i)).contains("Boolean") || (list.get(i)).contains("float")
-                    || (list.get(i)).contains("byte") || (list.get(i)).contains("short")
-                    || (list.get(i)).contains("long")
-                    || (list.get(i)).contains("char") || (list.get(i)).contains("double"))
-                    && (list.get(i)).contains(";")) {
-                ArrayList<String> list_m = new ArrayList<String>(
-                        Arrays.asList(((list.get(i)).replace(";", " ;")).split(" ")));
-                list_1.add(list_m.get(((list_m.indexOf("int"))) + 1));
-                list_1.add(list_m.get(((list_m.indexOf("String"))) + 1));
-                list_1.add(list_m.get(((list_m.indexOf("float"))) + 1));
-                list_1.add(list_m.get(((list_m.indexOf("Boolean"))) + 1));
-                list_1.add(list_m.get(((list_m.indexOf("byte"))) + 1));
-                list_1.add(list_m.get(((list_m.indexOf("short"))) + 1));
-                list_1.add(list_m.get(((list_m.indexOf("long"))) + 1));
-                list_1.add(list_m.get(((list_m.indexOf("char"))) + 1));
-                list_1.add(list_m.get(((list_m.indexOf("double"))) + 1));
-
+    // This method extracts data type names from the list of file lines
+    public static ArrayList<String> arrdatatypeNames(ArrayList<String> ListFileLines, ArrayList<String> ListVarNames) {
+        // Iterate through each line in the list of file lines
+        for (int i = 0; i < ListFileLines.size(); i++) {
+            // Check if the line contains any of the specified data types and ends with a
+            // semicolon
+            if (((ListFileLines.get(i)).contains("int") || (ListFileLines.get(i)).contains("String")
+                    || (ListFileLines.get(i)).contains("Boolean") || (ListFileLines.get(i)).contains("float")
+                    || (ListFileLines.get(i)).contains("byte") || (ListFileLines.get(i)).contains("short")
+                    || (ListFileLines.get(i)).contains("long")
+                    || (ListFileLines.get(i)).contains("char") || (ListFileLines.get(i)).contains("double"))
+                    && (ListFileLines.get(i)).contains(";")) {
+                // Split the line into a list of strings for easier manipulation
+                ArrayList<String> ListMain = new ArrayList<String>(
+                        Arrays.asList(((ListFileLines.get(i)).replace(";", " ;")).split(" ")));
+                // Add data type names to ListFuncNames based on the presence of the specified
+                // data types
+                ListVarNames.add(ListMain.get(((ListMain.indexOf("int"))) + 1));
+                ListVarNames.add(ListMain.get(((ListMain.indexOf("String"))) + 1));
+                ListVarNames.add(ListMain.get(((ListMain.indexOf("float"))) + 1));
+                ListVarNames.add(ListMain.get(((ListMain.indexOf("Boolean"))) + 1));
+                ListVarNames.add(ListMain.get(((ListMain.indexOf("byte"))) + 1));
+                ListVarNames.add(ListMain.get(((ListMain.indexOf("short"))) + 1));
+                ListVarNames.add(ListMain.get(((ListMain.indexOf("long"))) + 1));
+                ListVarNames.add(ListMain.get(((ListMain.indexOf("char"))) + 1));
+                ListVarNames.add(ListMain.get(((ListMain.indexOf("double"))) + 1));
             }
-
         }
-        list_1.remove(" ");
-        list_1.remove("");
-        return list_1;
+        // Remove any empty or whitespace strings from the list of data type names
+        ListVarNames.remove(" ");
+        ListVarNames.remove("");
+        // Return the list of extracted data type names
+        return ListVarNames;
     }
 }

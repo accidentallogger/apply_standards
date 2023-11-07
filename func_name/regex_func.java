@@ -2,39 +2,48 @@ package func_name;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-//import java.util.regex.*;
 import java.util.Scanner;
 
 import java.util.ArrayList;
 
 public class regex_func {
 
-    public ArrayList<String> function_name(String Filename, String regxw) {
+    // This method takes in a file name and a regular expression pattern as input
+    public ArrayList<String> arrfunctionName(String Filename, String regxw) {
+        // Create a file object using the provided filename
         File file = new File(Filename);
-        ArrayList<String> list = new ArrayList<String>();
-        ArrayList<String> list_1 = new ArrayList<String>();
-        ArrayList<String> correct_list = new ArrayList<String>();
+        // Initialize three ArrayLists to store different types of strings
+        ArrayList<String> ListFileLines = new ArrayList<String>(); // to store lines read from the file
+        ArrayList<String> ListFuncNames = new ArrayList<String>(); // to store extracted function names
+        ArrayList<String> CorrectList = new ArrayList<String>(); // to store function names that match the regular
+                                                                 // expression
+
         try (Scanner sc = new Scanner(file)) {
+            // Read each line from the file and add it to the list
             while (sc.hasNextLine()) {
-                list.add(sc.nextLine());
+                ListFileLines.add(sc.nextLine());
             }
-            // regxw = "([a-z]+[A-Z]+\\w+)+";
-            String var_regxString = regxw; // user input
-            // System.out.println(regxw);
-            // System.out.println("([a-z]+[A-Z]+\\w+)+");
-            list_1 = misc.compare_func_names.funcenames(list, list_1);
+            // varRegxString stores the user-provided regular expression
+            String VarRegxString = regxw; // user input
 
-            for (int j = 0; j < list_1.size(); j++) {
-                if ((list_1.get(j)).matches(var_regxString)) {
-                    correct_list.add(list_1.get(j));
+            // Call the compare_func_names.arrfunceNames method to populate ListFuncNames
+            // with extracted function names
+            ListFuncNames = misc.compare_func_names.arrfunceNames(ListFileLines, ListFuncNames);
+
+            // Iterate through each element in ListFuncNames
+            for (int j = 0; j < ListFuncNames.size(); j++) {
+                // If the current element matches the user-provided regular expression, add it
+                // to CorrectList
+                if ((ListFuncNames.get(j)).matches(VarRegxString)) {
+                    CorrectList.add(ListFuncNames.get(j));
                 }
-
             }
-            // System.out.println(correct_list);
         } catch (FileNotFoundException e) {
+            // If the file is not found, print the stack trace
             e.printStackTrace();
         }
-        return correct_list;
+        // Return the list of function names that match the regular expression
+        return CorrectList;
     }
 
 }

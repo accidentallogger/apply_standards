@@ -4,29 +4,35 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class compare_func_names {
-    public static ArrayList<String> funcenames(ArrayList<String> list, ArrayList<String> list_1) {
-        for (int i = 0; i < list.size(); i++) {
-            if ((list.get(i)).contains("(") && ((list.get(i)).contains("{"))) {
-                ArrayList<String> list_m = new ArrayList<String>(
-                        Arrays.asList((((list.get(i)).replace("(", " (")).replace("{", " {")).split(" ")));
-                // System.out.println(list_m);
-                list_1.add(list_m.get(((list_m.indexOf("int"))) + 1));
-                list_1.add(list_m.get(((list_m.indexOf("String"))) + 1));
-                list_1.add(list_m.get(((list_m.indexOf("float"))) + 1));
-                list_1.add(list_m.get(((list_m.indexOf("Boolean"))) + 1));
-                list_1.add(list_m.get(((list_m.indexOf("byte"))) + 1));
-                list_1.add(list_m.get(((list_m.indexOf("short"))) + 1));
-                list_1.add(list_m.get(((list_m.indexOf("long"))) + 1));
-                list_1.add(list_m.get(((list_m.indexOf("char"))) + 1));
-                list_1.add(list_m.get(((list_m.indexOf("double"))) + 1));
-                list_1.add(list_m.get(((list_m.indexOf("void"))) + 1));
 
+    // This method extracts function names from the list of file lines
+    public static ArrayList<String> arrfunceNames(ArrayList<String> ListFileLines, ArrayList<String> ListFuncNames) {
+        // Iterate through each line in the list of file lines
+        for (int i = 0; i < ListFileLines.size(); i++) {
+            // Check if the line contains "(" and "{" which are common in function
+            // declarations
+            if ((ListFileLines.get(i)).contains("(") && ((ListFileLines.get(i)).contains("{"))) {
+                // Split the line into a list of strings for easier manipulation
+                ArrayList<String> ListMain = new ArrayList<String>(
+                        Arrays.asList((((ListFileLines.get(i)).replace("(", " (")).replace("{", " {")).split(" ")));
+                // Add potential function names to ListFuncNames based on various data types
+                ListFuncNames.add(ListMain.get(((ListMain.indexOf("int"))) + 1));
+                ListFuncNames.add(ListMain.get(((ListMain.indexOf("String"))) + 1));
+                ListFuncNames.add(ListMain.get(((ListMain.indexOf("float"))) + 1));
+                ListFuncNames.add(ListMain.get(((ListMain.indexOf("Boolean"))) + 1));
+                ListFuncNames.add(ListMain.get(((ListMain.indexOf("byte"))) + 1));
+                ListFuncNames.add(ListMain.get(((ListMain.indexOf("short"))) + 1));
+                ListFuncNames.add(ListMain.get(((ListMain.indexOf("long"))) + 1));
+                ListFuncNames.add(ListMain.get(((ListMain.indexOf("char"))) + 1));
+                ListFuncNames.add(ListMain.get(((ListMain.indexOf("double"))) + 1));
+                ListFuncNames.add(ListMain.get(((ListMain.indexOf("void"))) + 1));
             }
-
         }
-        list_1.remove(" ");
-        list_1.remove("");
+        // Remove any empty or whitespace strings from the list of function names
+        ListFuncNames.remove(" ");
+        ListFuncNames.remove("");
 
-        return list_1;
+        // Return the list of extracted function names
+        return ListFuncNames;
     }
 }
