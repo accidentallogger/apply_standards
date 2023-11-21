@@ -3,7 +3,7 @@ package rules;
 import java.util.ArrayList;
 
 public interface rules {
-    public int indFwe(String Filename, int indspaces){
+public int indFwe(String Filename, int indspaces){
         int manMaqn;
         Boolean camelCase;
 
